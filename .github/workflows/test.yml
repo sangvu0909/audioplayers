@@ -296,10 +296,10 @@ jobs:
         working-directory: ./packages/audioplayers/example
         # Need to execute lib and app tests one by one, see: https://github.com/flutter/flutter/issues/101031
         run: |
-          ( cd server; dart run bin/server.dart ) &
-          flutter test -v -d macos integration_test/platform_test.dart --dart-define USE_LOCAL_SERVER=true
-          flutter test -v -d macos integration_test/lib_test.dart --dart-define USE_LOCAL_SERVER=true
-          flutter test -v -d macos integration_test/app_test.dart --dart-define USE_LOCAL_SERVER=true
+          ( cd server; LIVE_MODE=true dart run bin/server.dart ) &
+          flutter test -d macos integration_test/platform_test.dart --dart-define USE_LOCAL_SERVER=true
+          flutter test -d macos integration_test/lib_test.dart --dart-define USE_LOCAL_SERVER=true
+          flutter test -d macos integration_test/app_test.dart --dart-define USE_LOCAL_SERVER=true
 
   macos-14:
     runs-on: macos-14
@@ -317,8 +317,10 @@ jobs:
         working-directory: ./packages/audioplayers/example
         # Need to execute lib and app tests one by one, see: https://github.com/flutter/flutter/issues/101031
         run: |
-          ( cd server; dart run bin/server.dart ) &
-          flutter test -v -d macos integration_test/platform_test.dart --dart-define USE_LOCAL_SERVER=true
+          ( cd server; LIVE_MODE=true dart run bin/server.dart ) &
+          flutter test -d macos integration_test/platform_test.dart --dart-define USE_LOCAL_SERVER=true
+          flutter test -d macos integration_test/lib_test.dart --dart-define USE_LOCAL_SERVER=true
+          flutter test -d macos integration_test/app_test.dart --dart-define USE_LOCAL_SERVER=true
 
   windows:
     runs-on: windows-latest
